@@ -1,4 +1,4 @@
-@(title: String, currentPage: String)(content: Html)
+@(title: String)(content: Html)
 
 <!DOCTYPE html>
 <html>
@@ -14,10 +14,10 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-        <a class="brand" href="@routes.Application.display()">play-example-ui</a>
+        <a class="brand" href="@routes.Application.renderHome()">play-example-ui</a>
         <ul class="nav pull-right">
-          <li class="@("active".when(currentPage == "Home"))"><a href="@routes.Application.display()">Home</a></li>
-          <li class="@("active".when(currentPage == "SimpleForm"))"><a href="@routes.Application.display()">Simple Form</a></li>
+          <li class="@("active".when(title == "Home"))"><a href="@routes.Application.renderHome()">Home</a></li>
+          <li class="@("active".when(title == "Simple Form"))"><a href="@routes.Application.renderSimpleForm()">Simple Form</a></li>
        </ul>
       </div>
     </div>

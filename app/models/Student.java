@@ -8,15 +8,13 @@ import play.db.ebean.Model;
  * Simple model class used for form data retrieval.
  * @author Philip Johnson
  */
-public class Person extends Model {
+public class Student extends Model {
   private static final long serialVersionUID = -2206212996405933705L;
-  public String name;
-  public String gender;
-  
-  public static List<String> getGenders() {
-    List<String> genders = new ArrayList<>();
-    genders.add("Male");
-    genders.add("Female");
-    return genders;
-  }
+  private String name;
+  private String password;
+  private List<Hobby> hobbies = new ArrayList<>();
+  private GradeLevel gradeLevel;
+  private String gpa;
+  private List<Major> majors = new ArrayList<>();
+
 }

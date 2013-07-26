@@ -1,11 +1,12 @@
 package controllers;
 
 import static play.data.Form.form;
-import models.Person;
+import models.Student;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
+import views.html.simpleform;
 
 /**
  * The controller supporting two actions. Display shows the index page without the results of any
@@ -15,13 +16,21 @@ import views.html.index;
  * @author Philip Johnson
  */
 public class Application extends Controller {
-  public static Form<Person> personForm = form(Person.class);
+  public static Form<Student> personForm = form(Student.class);
 
   /**
    * @return The index page upon initial display. No prior data.
    */
-  public static Result display() {
+  public static Result renderHome() {
     return ok(index.render());
   }
+  
+  /**
+   * @return The index page upon initial display. No prior data.
+   */
+  public static Result renderSimpleForm() {
+    return ok(simpleform.render());
+  }
+
 
 }
