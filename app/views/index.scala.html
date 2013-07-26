@@ -1,23 +1,79 @@
-@(personForm: Form[models.Person], person: String, gender: String)
+@import helper._ 
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) }
 
-@import helper._
-@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) } 
-
-@main("Twitter Bootstrap Example", "Index") {
-
+@main("Home", "Home") {
 <div class="container">
-  <div class="well">
-  <h3>Sample Form</h3>
- 
-  @form(routes.Application.submit(), 'class -> "form-horizontal") {
-    @inputText(personForm("name"), '_label -> "Name", 'id -> "name")
-    @select(personForm("gender"), options = options(models.Person.getGenders()), '_default -> "Choose a gender", '_label -> "Gender", 'id -> "gender")
-    <div class="control-group">
-      <div class="controls">  
-        <input id="submit" type="submit" value="Submit" class="btn btn-primary">
+  <div class="hero-unit">
+    <p>Welcome to the play-example-ui project. The goal of this Play application is to
+      illustrate simple user interface elements using Twitter Bootstrap with a responsive layout.</p>
+    <p>Note that this project does not use a database backend so that the code can be as simple
+      as possible. In the case of forms, associated model objects are created so that you can see
+      how forms are populated from models and vice-versa.</p>
+  </div>
+  
+  <!--  Row One -->
+  <div class="row">
+    <div class="span3">
+      <div class="well">
+        <h3>Simple Form</h3>
+        <p>Shows basic form elements and how they can be connected to model instances.</p>
       </div>
     </div>
-    }
+    <div class="span3">
+      <div class="well">
+        <h3>Validation</h3>
+        <p>Adds validation code to the simple form.</p>
+      </div>
+    </div>
+    <div class="span3">
+      <div class="well">
+        <h3>Simple Table</h3>
+        <p>Shows how to create and manipulate tables.</p>
+      </div>
+    </div>
+    <div class="span3">
+      <div class="well">
+        <h3>Data Binding</h3>
+        <p>Shows how to use the Play "Custom Data Binding" feature.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row Two -->
+  <div class="row">
+    <div class="span3">
+      <div class="well">
+        <h3>Tool Tips</h3>
+        <p>
+          Example of a JavaScript <a href="#" rel="tooltip" data-toggle="tooltip"
+            data-title="JQuery + Bootstrap JS are working!">tooltip</a>. 
+        </p>
+      </div>
+    </div>
+    <div class="span3">
+      <div class="well">
+        <h3>Bootswatch</h3>
+        <p>Bootswatch provides simple theme alternatives. 
+        </p>
+      </div>
+    </div>
+    <div class="span3">
+      <div class="well">
+        <h3>Date Picker</h3>
+        <p>Use a JavaScript datepicker.</p>
+      </div>
+    </div>
+    <div class="span3">
+      <div class="well">
+        <h3>Testing</h3>
+        <p>Show how to do testing on all of this.</p>
+      </div>
+    </div>
   </div>
 </div>
+
+
+
+
+
 }

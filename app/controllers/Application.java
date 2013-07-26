@@ -21,15 +21,7 @@ public class Application extends Controller {
    * @return The index page upon initial display. No prior data.
    */
   public static Result display() {
-    return ok(index.render(personForm, "(None)", "(None)"));
-  }
-
-  /**
-   * @return The index page after processing a submission.
-   */
-  public static Result submit() {
-    Person person = form(Person.class).bindFromRequest().get();
-    return ok(index.render(personForm, person.name, person.gender));
+    return ok(index.render());
   }
 
 }
