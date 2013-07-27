@@ -1,8 +1,6 @@
 package models;
 
-import play.db.ebean.Model;
-
-public class GradeLevel extends Model {
+public class GradeLevel {
   
   private String level;
 

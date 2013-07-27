@@ -1,0 +1,112 @@
+@(studentForm: Form[models.Student])
+
+@import helper._ 
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) }
+
+@main("Simple Form 1") {
+
+<!--
+  Things that changed from SimpleFormMockup:
+  (1) added the studentForm parameter to the top of the file.
+  (2) replaced the <form> tag with the @form helper template.
+  (3) replaced the </form> tag with the closing bracket for the @form helper template.
+  (4) requires a new controller action saveSimpleForm1 to handle form submission.
+ -->
+
+<div class="container">
+  <div class="well">
+    @form(routes.SimpleForm.saveSimpleForm1(), 'class -> "form-horizontal") {
+      <fieldset>
+        <!-- Header -->
+        <div id="legend">
+          <legend>Student Data</legend>
+        </div>
+        <!-- Name -->
+        <div class="control-group">
+          <label class="control-label" for="name">Name</label>
+          <div class="controls">
+            <input type="text" id="name" name="name" placeholder="My Name" class="input-xlarge">
+            <p class="help-block">Please enter your first and last name.</p>
+          </div>
+        </div>
+        <!-- Password -->
+        <div class="control-group">
+          <label class="control-label" for="password">Password</label>
+          <div class="controls">
+            <input type="password" id="password" name="password" placeholder="Password" class="input-xlarge">
+            <p class="help-block">Password should be chosen with care.</p>
+          </div>
+        </div>
+        <!-- Student checkbox -->
+        <div class="control-group">
+          <label class="control-label" for="student">Hobbies</label>
+          <div class="controls">
+            <label class="checkbox inline"> <input type="checkbox" id="surfing"
+              value="surfing"> Surfing
+            </label> <label class="checkbox inline"> <input type="checkbox" id="biking"
+              value="biking"> Biking
+            </label> <label class="checkbox inline"> <input type="checkbox" id="swimming"
+              value="swimming"> Swimming
+            </label>
+            <p class="help-block">Check all hobbies.</p>
+          </div>
+        </div>
+        <!-- Student Level -->
+        <div class="control-group">
+          <label class="control-label" for="level">Level</label>
+          <div class="controls">
+            <label class="radio"> <input type="radio" name="level-senior" id="level-senior"
+              value="level-senior" checked="">Senior
+            </label> <label class="radio"> <input type="radio" name="level-junior" id="level-junior"
+              value="level-junior">Junior
+            </label> <label class="radio"> <input type="radio" name="level-sophomore"
+              id="level-sophomore" value="level-sophomore">Sophomore
+            </label> <label class="radio"> <input type="radio" name="level-freshman"
+              id="level-freshman" value="level-freshman">Freshman
+            </label> <label class="radio"> <input type="radio" name="level-other" id="level-other"
+              value="level-other">N/A
+            </label>
+            <p class="help-block">Click the radio button corresponding to your class level.</p>
+          </div>
+        </div>
+        <!-- GPA -->
+        <div class="control-group">
+          <label class="control-label" for="gpa">GPA</label>
+          <div class="controls">
+            <select>
+              <option>4.0</option>
+              <option>3.0 - 3.9</option>
+              <option>2.0 - 2.9</option>
+              <option>1.0 - 1.9</option>
+            </select>
+            <p class="help-block">Select your GPA</p>
+          </div>
+        </div>
+        <!-- Major(s) -->
+        <div class="control-group">
+          <label class="control-label" for="majors">Major(s)</label>
+          <div class="controls">
+            <select multiple="multiple">
+              <option>Chemistry</option>
+              <option>Biology</option>
+              <option>Physics</option>
+              <option>Other</option>
+            </select>
+            <p class="help-block">Select one or more majors.</p>
+          </div>
+        </div>
+        <!-- Button -->
+
+        <div class="control-group">
+          <div class="controls">
+            <button class="btn btn-success">Submit</button>
+            <button class="btn cancel">Cancel</button>
+          </div>
+        </div>
+      </fieldset>
+    }
+  </div>
+</div>
+
+
+}

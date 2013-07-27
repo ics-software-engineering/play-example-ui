@@ -2,13 +2,13 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
-import play.db.ebean.Model;
 
 /**
  * Simple model class used for form data retrieval.
+ * Note that to implement persistence, this class should extend play.db.ebean.Model.
  * @author Philip Johnson
  */
-public class Student extends Model {
+public class Student  {
   private static final long serialVersionUID = -2206212996405933705L;
   private String name;
   private String password;
@@ -16,5 +16,4 @@ public class Student extends Model {
   private GradeLevel gradeLevel;
   private String gpa;
   private List<Major> majors = new ArrayList<>();
-
 }

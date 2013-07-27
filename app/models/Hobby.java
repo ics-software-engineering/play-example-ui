@@ -1,8 +1,6 @@
 package models;
 
-import play.db.ebean.Model;
-
-public class Hobby extends Model {
+public class Hobby {
   
   private String name;
   
