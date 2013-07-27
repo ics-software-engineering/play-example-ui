@@ -1,19 +1,17 @@
 @(studentForm: Form[models.Student])
 
 @import helper._ 
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) }
 
-@main("Simple Form 1") {
+@main("Simple Form 2") {
 
 <!--
-  Things that changed from SimpleFormMockup:
-  (1) added the studentForm parameter to the top of the file.
-  (2) import the helper._ templates so we can refer to @form.
-  (3) replaced the <form> tag with the @form helper template.
-  (4) replaced the </form> tag with the closing bracket for the @form helper template.
-  (5) requires a new controller action saveSimpleForm1 to handle form submission.
-  
-  Good thing to do: do "View Source" on the rendered HTML for this page (simpleform1) and 
-  compare to the source for the rendered page simpleform0.  How do they differ?
+  Things that changed from SimpleForm1:
+  (1) define the twitterBootstrapInput.render function as the default FieldConstructor template,
+      so that when we use helpers like @inputText, etc., they expand into TB HTML.
+      Take a look at it in views/helper/twitterBootstrapInput.scala.html
+  (2) replaced the <control-group> for the name text field with the @inputText helper, which will
+      bind the value of that field to the name field in the Student form
  -->
 
 <div class="container">
