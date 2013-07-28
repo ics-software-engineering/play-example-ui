@@ -8,7 +8,8 @@ To use, include the following in your view file:
 
 <div class="control-group @if(elements.hasErrors) {error}">
   <label class="control-label" for="@elements.id">@elements.label</label>
-  <div class="controls">@elements.input
+  <div class="controls">
+    @elements.input
     <p class="help-inline">@elements.infos.mkString(", ")</p>
     @if(elements.hasErrors) { <p class="help-block">@elements.errors.mkString(", ")</p> }
   </div>

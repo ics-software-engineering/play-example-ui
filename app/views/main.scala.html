@@ -14,10 +14,10 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-        <a class="brand" href="@routes.Application.renderIndex()">play-example-ui</a>
+        <a class="brand" href="@routes.Application.getIndex()">play-example-ui</a>
         <ul class="nav pull-right">
-          <li class="@("active".when(title == "Home"))"><a href="@routes.Application.renderIndex()">Home</a></li>
-          <li class="@("active".when(title == "Simple Form 1"))"><a href="@routes.SimpleForm.renderSimpleForm1()">Simple Form 1</a></li>
+          <li class="@("active".when(title == "Home"))"><a href="@routes.Application.getIndex()">Home</a></li>
+          <li class="@("active".when(title == "Simple Form 1"))"><a href="@routes.SimpleForm.getSimpleForm1()">Simple Form 1</a></li>
        </ul>
       </div>
     </div>

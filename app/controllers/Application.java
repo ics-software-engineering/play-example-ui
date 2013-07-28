@@ -15,7 +15,7 @@ public class Application extends Controller {
   /**
    * @return Render and return the index page.
    */
-  public static Result renderIndex() {
+  public static Result getIndex() {
     // Convert the index.scala.html template into HTML.
     Html renderedContent = index.render();
     // Send the HTML back to the client.

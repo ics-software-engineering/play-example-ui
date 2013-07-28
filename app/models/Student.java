@@ -16,4 +16,9 @@ public class Student  {
   private GradeLevel gradeLevel;
   private String gpa;
   private List<Major> majors = new ArrayList<>();
+  
+  
+  public String toString() {
+    return String.format("[Student %s %s]", this.name, this.password);
+  }
 }

@@ -3,11 +3,13 @@
 # ~~~~
 
 # Home page
-GET     /                            controllers.Application.renderIndex()
+GET     /                            controllers.Application.getIndex()
 
-GET     /simpleform0                 controllers.SimpleForm.renderSimpleForm0()
-GET     /simpleform1                 controllers.SimpleForm.renderSimpleForm1()
-POST    /simpleform1                 controllers.SimpleForm.saveSimpleForm1()
+GET     /simpleform0                 controllers.SimpleForm.getSimpleForm0()
+GET     /simpleform1                 controllers.SimpleForm.getSimpleForm1()
+POST    /simpleform1                 controllers.SimpleForm.postSimpleForm1()
+GET     /simpleform2                 controllers.SimpleForm.getSimpleForm2()
+POST    /simpleform2                 controllers.SimpleForm.postSimpleForm2()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

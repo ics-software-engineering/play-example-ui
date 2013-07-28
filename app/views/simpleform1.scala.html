@@ -4,7 +4,7 @@
 
 @main("Simple Form 1") {
 
-<!--
+@*
   Things that changed from SimpleFormMockup:
   (1) added the studentForm parameter to the top of the file.
   (2) import the helper._ templates so we can refer to @form.
@@ -14,11 +14,11 @@
   
   Good thing to do: do "View Source" on the rendered HTML for this page (simpleform1) and 
   compare to the source for the rendered page simpleform0.  How do they differ?
- -->
+*@
 
 <div class="container">
   <div class="well">
-    @form(routes.SimpleForm.saveSimpleForm1(), 'class -> "form-horizontal") {
+    @form(routes.SimpleForm.postSimpleForm1(), 'class -> "form-horizontal") {
       <fieldset>
         <!-- Header -->
         <div id="legend">

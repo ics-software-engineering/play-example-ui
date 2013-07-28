@@ -5,18 +5,18 @@
 
 @main("Simple Form 2") {
 
-<!--
+@*
   Things that changed from SimpleForm1:
   (1) define the twitterBootstrapInput.render function as the default FieldConstructor template,
       so that when we use helpers like @inputText, etc., they expand into TB HTML.
       Take a look at it in views/helper/twitterBootstrapInput.scala.html
   (2) replaced the <control-group> for the name text field with the @inputText helper, which will
       bind the value of that field to the name field in the Student form
- -->
+*@
 
 <div class="container">
   <div class="well">
-    @form(routes.SimpleForm.saveSimpleForm1(), 'class -> "form-horizontal") {
+    @form(routes.SimpleForm.postSimpleForm2(), 'class -> "form-horizontal") {
       <fieldset>
         <!-- Header -->
         <div id="legend">
