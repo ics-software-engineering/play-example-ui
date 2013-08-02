@@ -1,17 +1,20 @@
-@(studentForm: Form[models.Student])
+@(name: String, password: String)
 
 @import helper._ 
-@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) }
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapTextInput1.render) }
 
 @main("Simple Form 2") {
 
 @*
   Things that changed from SimpleForm1:
-  (1) define the twitterBootstrapInput.render function as the default FieldConstructor template,
+  (1) define views/helper/twitterBootstrapTextInput.scala.html as the default FieldConstructor template,
       so that when we use helpers like @inputText, etc., they expand into TB HTML.
       Take a look at it in views/helper/twitterBootstrapInput.scala.html
-  (2) replaced the <control-group> for the name text field with the @inputText helper, which will
-      bind the value of that field to the name field in the Student form
+  (2) replaced the control-group for the name and password fields with the @inputText helper, which will
+      bind the value of that field to the name field in the Student form.
+  (3) Arguments without an underscore ('class, 'placeholder, etc) get added to the input control.
+      Arguments with an underscore ('_label, '_help, etc) are used in the helper. 
+  
 *@
 
 <div class="container">
@@ -22,31 +25,35 @@
         <div id="legend">
           <legend>Student Data</legend>
         </div>
+        
         <!-- Name -->
-        <div class="control-group">
-          <label class="control-label" for="name">Name</label>
-          <div class="controls">
-            <input type="text" id="name" name="name" placeholder="My Name" class="input-xlarge">
-            <p class="help-block">Please enter your first and last name.</p>
-          </div>
-        </div>
+        @bootstrap2InputText("Name", 
+          'type -> "text",
+          'value -> name,
+          'class -> "input-xlarge", 
+          'placeholder -> "My Name",
+          'help -> "Please enter your first and last name")
+          
         <!-- Password -->
-        <div class="control-group">
-          <label class="control-label" for="password">Password</label>
-          <div class="controls">
-            <input type="password" id="password" name="password" placeholder="Password" class="input-xlarge">
-            <p class="help-block">Password should be chosen with care.</p>
-          </div>
-        </div>
+        @bootstrap2InputText("Password",
+          'type -> "text",
+          'value -> password, 
+          'class -> "input-xlarge",
+          'type -> "password", 
+          'placeholder -> "Password",        
+          'help -> "Password should be chosen with care.")
+        
         <!-- Student checkbox -->
         <div class="control-group">
-          <label class="control-label" for="student">Hobbies</label>
+          <label class="control-label" for="hobbies">Hobbies</label>
           <div class="controls">
-            <label class="checkbox inline"> <input type="checkbox" id="surfing"
+            <label class="checkbox inline"> <input type="checkbox" name="surfing" id="surfing"
               value="surfing"> Surfing
-            </label> <label class="checkbox inline"> <input type="checkbox" id="biking"
+            </label> 
+            <label class="checkbox inline"> <input type="checkbox" name="biking" id="biking"
               value="biking"> Biking
-            </label> <label class="checkbox inline"> <input type="checkbox" id="swimming"
+            </label> 
+            <label class="checkbox inline"> <input type="checkbox" name="swimming" id="swimming"
               value="swimming"> Swimming
             </label>
             <p class="help-block">Check all hobbies.</p>

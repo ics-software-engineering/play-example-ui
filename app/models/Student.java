@@ -1,24 +1,62 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Simple model class used for form data retrieval.
  * Note that to implement persistence, this class should extend play.db.ebean.Model.
  * @author Philip Johnson
  */
-public class Student  {
-  private static final long serialVersionUID = -2206212996405933705L;
-  private String name;
-  private String password;
-  private List<Hobby> hobbies = new ArrayList<>();
-  private GradeLevel gradeLevel;
-  private String gpa;
-  private List<Major> majors = new ArrayList<>();
+public class Student {
+  public Map<String, String> errorMap = new HashMap<>(); 
+  public String name;
+  public String password;
+  public List<Hobby> hobbies = new ArrayList<>();
+  //public GradeLevel gradeLevel;
+  //public String gpa;
+  //public List<Major> majors = new ArrayList<>();
   
+  public Student () {
+    // EBean wants a no-arg constructor.
+  }
+  
+  public Student(String name, String password, List<Hobby> hobbies) {
+    this.name = name;
+    this.password = password;
+    this.hobbies = hobbies;
+  }
+  
+  /**
+   * Creates a returns a new Student instance initialized from formValues.
+   * If problems occur during binding, the errorMap field reports the problem(s).
+   * Use hasErrors() to check if this instance is valid or not.  
+   * @param formValues The values retrieved from the form.
+   * @return A student instance. 
+   */
+  public static Student makeInstance(Map<String, String[]> formValues) {
+    Student student = new Student();
+    if (formValues.containsKey("Name")) {
+      student.name = formValues.get("Name")[0];
+    }
+    else {
+      student.errorMap.put("Name", "Required field name is missing.");
+    }
+    return student;
+  }
+  
+  /**
+   * @return True if this instance has an invalid state. 
+   */
+  public boolean hasErrors() {
+    return !this.errorMap.isEmpty();
+  }
   
   public String toString() {
-    return String.format("[Student %s %s]", this.name, this.password);
+    return String.format("[Student name: %s, password: %s, hobbies: %s]", 
+        this.name, this.password, this.hobbies);
   }
+  
 }

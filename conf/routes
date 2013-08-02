@@ -10,6 +10,12 @@ GET     /simpleform1                 controllers.SimpleForm.getSimpleForm1()
 POST    /simpleform1                 controllers.SimpleForm.postSimpleForm1()
 GET     /simpleform2                 controllers.SimpleForm.getSimpleForm2()
 POST    /simpleform2                 controllers.SimpleForm.postSimpleForm2()
+GET     /simpleform3                 controllers.SimpleForm.getSimpleForm3()
+POST    /simpleform3                 controllers.SimpleForm.postSimpleForm3()
+
+GET     /checkboxform                controllers.CheckboxForm.getCheckboxForm()
+POST    /checkboxform                controllers.CheckboxForm.postCheckboxForm()
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

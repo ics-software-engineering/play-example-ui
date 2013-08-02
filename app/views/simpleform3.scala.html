@@ -1,59 +1,55 @@
-@()
+@(studentForm: Form[models.Student], hobbyMap: Map[Hobby, Boolean])
 
 @import helper._ 
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapTextInput1.render) }
 
-@main("Simple Form 1") {
+@main("Simple Form 3") {
 
 @*
-  Things that changed from SimpleFormMockup:
-  (2) import the helper._ templates so we can refer to @form.
-  (3) replaced the <form> tag with the @form helper template.
-  (4) replaced the </form> tag with the closing bracket for the @form helper template.
-  (5) requires a new controller action saveSimpleForm1 to handle form submission.
-  (6) Changed the submit and cancel buttons into actual input and links.
-  
-  Good thing to do: do "View Source" on the rendered HTML for this page (simpleform1) and 
-  compare to the source for the rendered page simpleform0.  How do they differ?
+  Things that changed from SimpleForm2 to support checkboxes:
+  (1) Added hobbyMap to params
+  (2) 
+  (3) 
 *@
 
 <div class="container">
   <div class="well">
-    @form(routes.SimpleForm.postSimpleForm1(), 'class -> "form-horizontal") {
+    @form(routes.SimpleForm.postSimpleForm3(), 'class -> "form-horizontal") {
       <fieldset>
         <!-- Header -->
         <div id="legend">
           <legend>Student Data</legend>
         </div>
+        
         <!-- Name -->
-        <div class="control-group">
-          <label class="control-label" for="Name">Name</label>
-          <div class="controls">
-            <input type="text" id="Name" name="Name" placeholder="My Name" class="input-xlarge">
-            <p class="help-block">Please enter your first and last name.</p>
-          </div>
-        </div>
+        @inputText(studentForm("Name"), 
+          'class -> "input-xlarge", 
+          'placeholder -> "My Name",
+          '_label -> "Name", 
+          '_help -> "Please enter your first and last name")
+          
         <!-- Password -->
+        @inputText(studentForm("Password"), 
+          'class -> "input-xlarge",
+          'type -> "password", 
+          'placeholder -> "Password",        
+          '_label -> "Password", 
+          '_help -> "Password should be chosen with care.")
+        
+         <!-- Hobbies -->
         <div class="control-group">
-          <label class="control-label" for="password">Password</label>
+          <label class="control-label" for="hobbies">Hobbies</label>
           <div class="controls">
-            <input type="password" id="password" name="password" placeholder="Password" class="input-xlarge">
-            <p class="help-block">Password should be chosen with care.</p>
-          </div>
-        </div>
-        <!-- Student checkbox -->
-        <div class="control-group">
-          <label class="control-label" for="student">Hobbies</label>
-          <div class="controls">
-            <label class="checkbox inline"> <input type="checkbox" id="surfing"
-              value="surfing"> Surfing
-            </label> <label class="checkbox inline"> <input type="checkbox" id="biking"
-              value="biking"> Biking
-            </label> <label class="checkbox inline"> <input type="checkbox" id="swimming"
-              value="swimming"> Swimming
-            </label>
+            @for((hobby, checkedValue) <- hobbyMap) {
+              <label class="checkbox inline"> 
+                <input type="checkbox" name="hobbies[]" id="@hobby.getId()" value="@hobby.getName()" @if(checkedValue) {checked}> 
+                @hobby.getName()
+              </label> 
+             }
             <p class="help-block">Check all hobbies.</p>
           </div>
         </div>
+        
         <!-- Student Level -->
         <div class="control-group">
           <label class="control-label" for="level">Level</label>
@@ -102,8 +98,8 @@
 
         <div class="control-group">
           <div class="controls">
-            <input type="submit" class="btn btn-success">
-            <a href="@routes.Application.getIndex()" class="btn cancel">Cancel</a>
+            <button class="btn btn-success">Submit</button>
+            <button class="btn cancel">Cancel</button>
           </div>
         </div>
       </fieldset>

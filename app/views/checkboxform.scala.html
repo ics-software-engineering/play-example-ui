@@ -1,0 +1,45 @@
+@(studentForm: Form[models.Student], hobbyMap: Map[Hobby, Boolean])
+
+@import helper._ 
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapTextInput1.render) }
+
+@main("Checkbox Test") {
+
+<div class="container">
+  <div class="well">
+    @form(routes.CheckboxForm.postCheckboxForm(), 'class -> "form-horizontal") {
+      <fieldset>
+        <!-- Header -->
+        <div id="legend">
+          <legend>Test Checkbox</legend>
+        </div>
+        
+        <!-- Student checkbox -->
+        <div class="control-group">
+          <label class="control-label" for="hobbies">Hobbies</label>
+          <div class="controls">
+            @for((hobby, checkedValue) <- hobbyMap) {
+              <label class="checkbox inline"> 
+                <input type="checkbox" name="hobbies[]" id="@hobby.getId()" value="@hobby.getName()" @if(checkedValue) {checked}> 
+                @hobby.getName()
+              </label> 
+             }
+            <p class="help-block">Check all hobbies.</p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <input type="submit" class="btn btn-success">
+            <a href="@routes.Application.getIndex()" class="btn cancel">Cancel</a>
+          </div>
+        </div>
+      </fieldset>
+      <input type="hidden" name="name" value="foo">
+      <input type="hidden" name="password" value="bar">
+    }
+  </div>
+</div>
+
+
+}
