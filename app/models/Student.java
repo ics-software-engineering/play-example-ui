@@ -37,13 +37,31 @@ public class Student {
    * @return A student instance. 
    */
   public static Student makeInstance(Map<String, String[]> formValues) {
+    System.out.println("Form values: " + formValues);
     Student student = new Student();
+    // Process Name field
     if (formValues.containsKey("Name")) {
       student.name = formValues.get("Name")[0];
     }
     else {
       student.errorMap.put("Name", "Required field name is missing.");
     }
+    // Process Password field
+    if (formValues.containsKey("Password")) {
+      student.name = formValues.get("Password")[0];
+    }
+    else {
+      student.errorMap.put("Password", "Required field name is missing.");
+    }
+    // Process Hobbies.
+    student.hobbies = new ArrayList<Hobby>();
+    if (formValues.containsKey("Hobbies[]")) {
+      for (String hobbyName : formValues.get("Hobbies[]")) {
+        System.out.println("Adding hobby: " + hobbyName);
+        student.hobbies.add(new Hobby(0L, hobbyName));
+      }
+    }
+
     return student;
   }
   

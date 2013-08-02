@@ -72,10 +72,9 @@ public class SimpleForm extends Controller {
   
   public static Result postSimpleForm2() {
     // Retrieve the submitted form data from the request object.
-    Form<Student> studentForm = form(Student.class).bindFromRequest();
-    System.out.println("Fields bound from form: " + studentForm.data().keySet());
+    Map<String, String[]> formValues = request().body().asFormUrlEncoded();
     // Convert the form data into a Student model instance. 
-    Student student = studentForm.get();
+    Student student = Student.makeInstance(formValues);
     // Do something with the data.  Normally we'd save it to the database or whatever.
     System.out.println("Student is: " + student);
     // Now return something to the client. Let's just render and return the same form data. 
@@ -88,42 +87,24 @@ public class SimpleForm extends Controller {
    * then pass that in 
    */
   public static Result getSimpleForm3() {
-    Form<Student> studentForm = form(Student.class);
+    Student student = new Student("Joe Smith", "foodoo", new ArrayList<Hobby>());
     // Make a Map indicating the hobbies that this student has.
-    Map<Hobby, Boolean> hobbyMap = new HashMap<>();
-    hobbyMap.put(new Hobby(1L, "Surfing"), true);
-    hobbyMap.put(new Hobby(2L, "Biking"), false);
-    Html renderedContent = simpleform3.render(studentForm, hobbyMap);
+    Map<String, Boolean> hobbyMap = new HashMap<>();
+    hobbyMap.put("Surfing", true);
+    hobbyMap.put("Biking", false);
+    Html renderedContent = simpleform3.render(student.name, student.password, hobbyMap);
     // Send the HTML back to the client.
     return ok(renderedContent);
   }
   
   public static Result postSimpleForm3() {
-  // Retrieve the submitted form data from the request object.
-    
-    Form<Student> studentForm = form(Student.class).bindFromRequest();
-    //System.out.println("Form data (Simple3): "  + studentForm.data());
-    //System.out.println("Fields bound from form (Simple3): " + studentForm.data().keySet());
-    //DynamicForm studentForm = form().bindFromRequest();
-    //System.out.println("Form data: "  + studentForm.data());
-    
-    //Map<String, String[]> values = request().body().asFormUrlEncoded();
-    //System.out.println("Values: " + values);
-    //System.out.println("Hobbies[].length: " + values.get("hobbies[]").length);
-    
-    //DynamicForm form = form().bindFromRequest();
-    //System.out.println("Form data: " + form.data());
-    
-
+    // Retrieve the submitted form data from the request object.
+    Map<String, String[]> formValues = request().body().asFormUrlEncoded();
+    // Convert the form data into a Student model instance. 
+    Student student = Student.makeInstance(formValues);
     // Do something with the data.  Normally we'd save it to the database or whatever.
-    Student student = studentForm.get();
     System.out.println("Student is: " + student);
-    
-    // Make a Map indicating the hobbies that this student has.
-    Map<Hobby, Boolean> hobbyMap = new HashMap<>();
-    hobbyMap.put(new Hobby(1L, "Surfing"), true);
-    hobbyMap.put(new Hobby(2L, "Biking"), false);
     // Now return something to the client. Let's just render and return the same form data. 
-    return ok(simpleform3.render(form(Student.class), hobbyMap));
+    return ok(simpleform3.render(student.name, student.password, Hobby.makeHobbyMap(student)));
   }
 }

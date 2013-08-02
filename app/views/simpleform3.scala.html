@@ -1,4 +1,4 @@
-@(studentForm: Form[models.Student], hobbyMap: Map[Hobby, Boolean])
+@(name: String, password: String, hobbyMap: Map[String, Boolean])
 
 @import helper._ 
 @implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapTextInput1.render) }
@@ -7,8 +7,8 @@
 
 @*
   Things that changed from SimpleForm2 to support checkboxes:
-  (1) Added hobbyMap to params
-  (2) 
+  (1) Added hobbyMap to params.
+  (2) Implement bootstrap2MultipleCheckboxes
   (3) 
 *@
 
@@ -21,35 +21,27 @@
           <legend>Student Data</legend>
         </div>
         
-        <!-- Name -->
-        @inputText(studentForm("Name"), 
+         <!-- Name -->
+        @bootstrap2InputText("Name", 
+          'type -> "text",
+          'value -> name,
           'class -> "input-xlarge", 
           'placeholder -> "My Name",
-          '_label -> "Name", 
-          '_help -> "Please enter your first and last name")
+          'help -> "Please enter your first and last name")
           
         <!-- Password -->
-        @inputText(studentForm("Password"), 
+        @bootstrap2InputText("Password",
+          'type -> "text",
+          'value -> password, 
           'class -> "input-xlarge",
           'type -> "password", 
           'placeholder -> "Password",        
-          '_label -> "Password", 
-          '_help -> "Password should be chosen with care.")
+          'help -> "Password should be chosen with care.")
         
          <!-- Hobbies -->
-        <div class="control-group">
-          <label class="control-label" for="hobbies">Hobbies</label>
-          <div class="controls">
-            @for((hobby, checkedValue) <- hobbyMap) {
-              <label class="checkbox inline"> 
-                <input type="checkbox" name="hobbies[]" id="@hobby.getId()" value="@hobby.getName()" @if(checkedValue) {checked}> 
-                @hobby.getName()
-              </label> 
-             }
-            <p class="help-block">Check all hobbies.</p>
-          </div>
-        </div>
-        
+         @bootstrap2MultipleCheckboxes("Hobbies", hobbyMap, true, 'help -> "Check all hobbies.")
+         
+
         <!-- Student Level -->
         <div class="control-group">
           <label class="control-label" for="level">Level</label>
